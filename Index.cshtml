@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TrieuXuanDung_22800600424_B3.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Mô tả</th>
+            <th>Ảnh sản phẩm</th>
+            <th>Loại</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price.ToString("N0") đ</td>
+                <td>@product.Description</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <img src="@product.ImageUrl" alt="Product Image" style="width: 60px; height: auto;">
+                    }
+                </td>
+                <td>@product.Category?.Name</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-action="Display" asp-route-id="@product.Id">View</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@product.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
