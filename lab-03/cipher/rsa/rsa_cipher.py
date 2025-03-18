@@ -1,4 +1,5 @@
-import rsa, os
+import os
+import rsa
 
 if not os.path.exists('cipher/rsa/keys'):
     os.makedirs('cipher/rsa/keys')
